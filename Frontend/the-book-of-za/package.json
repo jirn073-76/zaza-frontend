@@ -1,0 +1,36 @@
+{
+  "name": "za",
+  "description": "The Za",
+  "version": "2.10.2",
+  "private": true,
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true
+  },
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "deploy": "node ./tasks/deploy.js"
+  },
+  "devDependencies": {
+    "@bg-dev/nuxt-naiveui": "^1.1.1",
+    "@nuxt/types": "^2.16.3",
+    "@types/node": "^18.16.3",
+    "@types/shelljs": "^0.8.12",
+    "nuxt": "^3.4.3",
+    "nuxtjs-phaser": "^3.0.13",
+    "phaser": "^3.60.0",
+    "shelljs": "^0.8.5"
+  },
+  "dependencies": {
+    "@vicons/ionicons4": "^0.12.0",
+    "@vicons/ionicons5": "^0.12.0",
+    "axios": "^1.4.0",
+    "qrcode": "^1.5.3"
+  }
+}

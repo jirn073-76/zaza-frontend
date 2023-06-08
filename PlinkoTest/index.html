@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="phaser.js"></script>
+</head>
+
+<body>
+
+    <script>
+        var config = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 600,
+            backgroundColor: '#ddd',
+            parent: 'phaser-example',
+            physics: {
+                default: 'matter',
+                matter: {
+                    enableSleeping: true,
+                    debugBodyColor: 0x0000ff,
+                    debug: true
+                }
+            },
+            scene: {
+                preload: preload,
+                create: create
+            }
+        };
+
+        var game = new Phaser.Game(config);
+
+        function preload() {
+            this.load.image('ball', 'assets/pangball.png');
+        }
+
+
+        var scalingFactor = 0.3;
+        var verticalSpacingBetweenBalls = 32;
+        var horizontalSpacingBetweenBalls = 32;
+        var centerOfFrame = 400 - (16 * scalingFactor); //Calculated by taking the radius 
+        function create() {
+            this.matter.world.setBounds(0, 0, 800, 600, 32, true, true, false, true);
+
+            //  Add in a stack of balls
+
+            //    
+
+            for (var i = 1; i < 13; i++) {
+                var ballsThisLayer = i;
+                var spacing = centerOfFrame;
+
+                spacing -= 22 * i;
+                const Matter = Phaser.Physics.Matter;
+                this.stack = this.matter.add.stack(spacing, 30 * i + verticalSpacingBetweenBalls, ballsThisLayer, 1, 32, 0, (x, y) => {
+                    return Matter.Matter.Bodies.circle(x, y, 32 / 4, { isStatic: true });
+                });
+
+                this.balls_images = this.stack.bodies.map(body => {
+                    return this.add.image(body.position.x, body.position.y, 'ball').setScale(0.5);
+                });
+
+            }
+           var ball =  this.matter.add.image(300, 0, 'ball').setScale(0.5);
+           ball.setCircle(8);
+        }
+
+
+    </script>
+
+</body>
+
+</html>
